@@ -1,74 +1,52 @@
--- Çàäàíèå 2
-
--- 1. Íàçâàíèå è ïðîäîëæèòåëüíîñòü ñàìîãî äëèòåëüíîãî òðåêà.
-
+ï»¿-- Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ 2
+-- 1. ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð¸ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ ÑÐ°Ð¼Ð¾Ð³Ð¾ Ð´Ð»Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ Ñ‚Ñ€ÐµÐºÐ°.
 SELECT name, duration 
 FROM track 
-WHERE duration = (SELECT max(duration) FROM track)
+WHERE duration = (SELECT max(duration) FROM track);
 
-
--- 2. Íàçâàíèå òðåêîâ, ïðîäîëæèòåëüíîñòü êîòîðûõ íå ìåíåå 3,5 ìèíóò.
-
+-- 2. ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ñ€ÐµÐºÐ¾Ð², Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð½Ðµ Ð¼ÐµÐ½ÐµÐµ 3,5 Ð¼Ð¸Ð½ÑƒÑ‚.
 SELECT name 
 FROM track 
 WHERE duration > '00:03:30';
 
-
--- 3. Íàçâàíèÿ ñáîðíèêîâ, âûøåäøèõ â ïåðèîä ñ 2018 ïî 2020 ãîä âêëþ÷èòåëüíî.
-
+-- 3. ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ñ ÑÐ±Ð¾Ñ€Ð½Ð¸ÐºÐ¾Ð², Ð²Ñ‹ÑˆÐµÐ´ÑˆÐ¸Ñ… Ð² Ð¿ÐµÑ€Ð¸Ð¾Ð´ Ñ 2018 Ð¿Ð¾ 2020 Ð³Ð¾Ð´ Ð²ÐºÐ»ÑŽÑ‡Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾.
 SELECT name
 FROM collection 
 WHERE release_year >='2018-01-01' AND release_year <= '2020-12-31';
 
-
--- 4. Èñïîëíèòåëè, ÷ü¸ èìÿ ñîñòîèò èç îäíîãî ñëîâà.
-
+-- 4. Ð˜ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»Ð¸, Ñ‡ÑŒÑ‘ Ð¸Ð¼Ñ ÑÐ¾ÑÑ‚Ð¾Ð¸Ñ‚ Ð¸Ð· Ð¾Ð´Ð½Ð¾Ð³Ð¾ ÑÐ»Ð¾Ð²Ð°.
 SELECT name
 FROM singer 
 WHERE name NOT LIKE '% %';
 
-
--- 5. Íàçâàíèå òðåêîâ, êîòîðûå ñîäåðæàò ñëîâî «ìîé» èëè «my».
-
+-- 5. ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ Ñ‚Ñ€ÐµÐºÐ¾Ð², ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ ÑÐ»Ð¾Ð²Ð¾ Â«Ð¼Ð¾Ð¹Â» Ð¸Ð»Ð¸ Â«myÂ».
 SELECT name
 FROM track 
-WHERE name LIKE '%my%' OR name LIKE '%ìîé%';
+WHERE name LIKE '%my%' OR name LIKE '%Ð¼Ð¾Ð¹%';
 
-
-
-
--- Çàäàíèå 3
--- 1. Êîëè÷åñòâî èñïîëíèòåëåé â êàæäîì æàíðå.
-
+-- Ð—Ð°Ð´Ð°Ð½Ð¸Ðµ 3
+-- 1. ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÐµÐ¹ Ð² ÐºÐ°Ð¶Ð´Ð¾Ð¼ Ð¶Ð°Ð½Ñ€Ðµ.
 SELECT genre, COUNT(name)
 FROM genre JOIN singer_genre
 ON genre.genre_id = singer_genre.genre_id
 GROUP BY genre
-ORDER BY 1
-;
+ORDER BY 1;
 
-
--- 2. Êîëè÷åñòâî òðåêîâ, âîøåäøèõ â àëüáîìû 2019–2020 ãîäîâ.
-
+-- 2. ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ‚Ñ€ÐµÐºÐ¾Ð², Ð²Ð¾ÑˆÐµÐ´ÑˆÐ¸Ñ… Ð² Ð°Ð»ÑŒÐ±Ð¾Ð¼Ñ‹ 2019â€“2020 Ð³Ð¾Ð´Ð¾Ð².
 SELECT COUNT(track.name)
 FROM track JOIN album
 ON track.album_id = album.album_id
 WHERE release_date >= '2019-01-01' AND release_date <= '2020-12-31'  
 ;
 
-
-
--- 3. Ñðåäíÿÿ ïðîäîëæèòåëüíîñòü òðåêîâ ïî êàæäîìó àëüáîìó.
-
+-- 3. Ð¡Ñ€ÐµÐ´Ð½ÑÑ Ð¿Ñ€Ð¾Ð´Ð¾Ð»Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ð¾ÑÑ‚ÑŒ Ñ‚Ñ€ÐµÐºÐ¾Ð² Ð¿Ð¾ ÐºÐ°Ð¶Ð´Ð¾Ð¼Ñƒ Ð°Ð»ÑŒÐ±Ð¾Ð¼Ñƒ.
 SELECT AVG(track.duration)
 FROM track JOIN album
 ON track.album_id = album.album_id  
 GROUP BY album
 ;
 
-
--- 4. Âñå èñïîëíèòåëè, êîòîðûå íå âûïóñòèëè àëüáîìû â 2020 ãîäó.
-
+-- 4. Ð’ÑÐµ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»Ð¸, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ Ð½Ðµ Ð²Ñ‹Ð¿ÑƒÑÑ‚Ð¸Ð»Ð¸ Ð°Ð»ÑŒÐ±Ð¾Ð¼Ñ‹ Ð² 2020 Ð³Ð¾Ð´Ñƒ.
 SELECT DISTINCT singer.name
 FROM singer 
 JOIN singer_album ON singer.singer_id = singer_album.singer_id
@@ -77,9 +55,7 @@ JOIN album ON (singer_album.album_id = album.album_id)
 GROUP BY singer.name
 ;
 
--- 5. Íàçâàíèÿ ñáîðíèêîâ, â êîòîðûõ ïðèñóòñòâóåò êîíêðåòíûé èñïîëíèòåëü (Metalica).
-
-
+-- 5. ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ñ ÑÐ±Ð¾Ñ€Ð½Ð¸ÐºÐ¾Ð², Ð² ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¿Ñ€Ð¸ÑÑƒÑ‚ÑÑ‚Ð²ÑƒÐµÑ‚ ÐºÐ¾Ð½ÐºÑ€ÐµÑ‚Ð½Ñ‹Ð¹ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒ (Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐµÐ³Ð¾ ÑÐ°Ð¼Ð¸).
 SELECT collection.name, singer.name
 FROM collection 
 LEFT JOIN collection_track  ON collection.collection_id = collection_track.collection_id
@@ -89,3 +65,4 @@ LEFT JOIN singer_album ON singer_album.album_id = album.album_id
 LEFT JOIN singer ON singer.singer_id = singer_album.singer_id
 WHERE singer.singer_id = 3 
 GROUP BY collection.name, singer.name
+;
