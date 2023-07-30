@@ -26,6 +26,9 @@ INSERT INTO track (track_id, name, album_id, duration) VALUES
 (5, 'Someone Like You', 1, '00:03:25'),
 (6, 'Umbrella', 4, '00:02:45'),
 (7, 'Whats my name?', 4, '00:03:20')
+(8, 'My Own', 2, '00:02:15'),
+(9, 'By myself', 1, '00:03:05'),
+(10, 'Beemy', 3, '00:04:25')
 ;
 
 INSERT INTO collection (collection_id, name, release_year) VALUES 
@@ -35,26 +38,29 @@ INSERT INTO collection (collection_id, name, release_year) VALUES
 (4, 'The Best of 2018', '2018-01-01')
 ;
 
-INSERT INTO singer_genre (singer_genre_id, genre_id, singer_id) VALUES 
-(1, 1, 2),
-(2, 1, 3),
-(3, 2, 1),
-(4, 3, 4)
+INSERT INTO singer_genre (genre_id, singer_id) VALUES 
+(1, 2),
+(1, 3),
+(2, 1),
+(3, 4)
 ;
 
-INSERT INTO singer_album (singer_album_id, album_id, singer_id) VALUES 
-(1, 1, 1),
-(2, 2, 2),
-(3, 3, 3),
-(4, 4, 4)
+INSERT INTO singer_album (album_id, singer_id) VALUES 
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4)
 ;
 
-INSERT INTO collection_track (collection_track_id, track_id, collection_id) VALUES
-(1, 1, 1),
-(2, 2, 1),
-(3, 3, 4),
-(4, 4, 3),
-(5, 5, 3),
-(6, 6, 2),
-(7, 7, 2)
+INSERT INTO collection_track (track_id, collection_id) VALUES
+(1, 1),
+(2, 1),
+(3, 4),
+(4, 3),
+(5, 3),
+(6, 2),
+(7, 2)
+(8, 4),
+(9, 3),
+(10, 1)
 ;
